@@ -15,6 +15,7 @@
         <module>novel-gateway</module>
         <module>novel-modules</module>
         <module>novel-visual</module>
+        <module>novel-api</module>
     </modules>
     <description>基于 Spring Cloud 2023 构建的微服务小说系统</description>
 
@@ -272,6 +273,12 @@
                 <version>${novel.version}</version>
             </dependency>
 
+            <!-- 系统接口 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-api-system</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
 
             <!-- 缓存服务 -->
             <dependency>
