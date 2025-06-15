@@ -38,18 +38,24 @@
         <druid.version>1.2.23</druid.version>
         <dynamic-ds.version>4.3.1</dynamic-ds.version>
         <commons.io.version>2.19.0</commons.io.version>
+        <commons.lang3.version>3.12.0</commons.lang3.version>
         <velocity.version>2.3</velocity.version>
         <fastjson.version>2.0.57</fastjson.version>
         <jjwt.version>0.9.1</jjwt.version>
         <minio.version>8.2.2</minio.version>
         <poi.version>4.1.2</poi.version>
-        <springdoc.version>2.6.0</springdoc.version>
+        <springdoc.version>1.6.9</springdoc.version>
         <transmittable-thread-local.version>2.14.4</transmittable-thread-local.version>
         <elasticsearch.version>8.2.0</elasticsearch.version>
         <shardingsphere-jdbc.version>5.4.1</shardingsphere-jdbc.version>
         <lombok.version>1.18.38</lombok.version>
         <redisson.version>3.45.0</redisson.version>
         <drools.version>8.41.0.Final</drools.version>
+        <spring-framework.version>5.3.39</spring-framework.version>
+        <logback.version>1.2.13</logback.version>
+        <tomcat.version>9.0.105</tomcat.version>
+        <javax-jaxb.version>2.3.1</javax-jaxb.version>
+        <servlet-api.version>4.0.1</servlet-api.version>
         <!-- 待定引入 -->
         <tobato.version>1.27.2</tobato.version>
         <wxpay.version>0.2.11</wxpay.version>
@@ -60,6 +66,15 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- 覆盖SpringFramework的依赖配置-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- SpringCloud 微服务 -->
             <dependency>
@@ -88,10 +103,49 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- 覆盖logback的依赖配置-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <!-- 覆盖tomcat的依赖配置-->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <!-- FastDFS 分布式文件系统 -->
+            <dependency>
+                <groupId>com.github.tobato</groupId>
+                <artifactId>fastdfs-client</artifactId>
+                <version>${tobato.version}</version>
+            </dependency>
+
             <!-- Springdoc webmvc 依赖配置 -->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
 
@@ -107,13 +161,6 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.boot.version}</version>
-            </dependency>
-
-            <!--mybatis-plus 持久层-->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
             </dependency>
 
             <!-- io常用工具类 -->
@@ -158,6 +205,87 @@
                 <version>${transmittable-thread-local.version}</version>
             </dependency>
 
+            <!-- Java Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+            </dependency>
+
+            <!-- Jaxb -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${javax-jaxb.version}</version>
+            </dependency>
+
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-core</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+            <!-- 接口模块 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-swagger</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+
+            <!-- 安全模块 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-security</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+
+            <!-- 数据脱敏 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-sensitive</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+
+            <!-- 权限范围 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-datascope</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+
+            <!-- 分布式事务 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-seata</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+            <!-- 日志记录 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-log</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+
+            <!-- 缓存服务 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-redis</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
+
+            <!-- rabbitmq服务 -->
+            <dependency>
+                <groupId>com.sakura.novel</groupId>
+                <artifactId>novel-common-rabbitmq</artifactId>
+                <version>${novel.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
