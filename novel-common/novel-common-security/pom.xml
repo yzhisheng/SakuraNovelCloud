@@ -11,10 +11,31 @@
 
     <artifactId>novel-common-security</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <dependencies>
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <!-- Novel Api System -->
+        <dependency>
+            <groupId>com.sakura.novel</groupId>
+            <artifactId>novel-api-system</artifactId>
+        </dependency>
+
+        <!-- Novel Common Redis-->
+        <dependency>
+            <groupId>com.sakura.novel</groupId>
+            <artifactId>novel-common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+
+    </dependencies>
 
 </project>
